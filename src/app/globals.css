@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #faf5f0;
+  --color-ink: #180b07;
+  --color-muted: #726864;
+  --color-line: #e3ded9;
+  --color-surface: #efe9e4;
+  --color-accent: #d56044;
+  --color-accent-tint: #f6e3db;
+
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-playfair), ui-serif, Georgia, serif;
+
+  /*
+   * One type scale for the whole site — nudge these to zoom the page in or out
+   * without touching a component. Sizes are ~10% below the first draft.
+   */
+  --text-meta: 0.875rem; /* 14px — secondary lines, dates, chips */
+  --text-body: 1rem; /* 16px — About and other running copy */
+  --text-lead: 1.0625rem; /* 17px — hero + Let's Connect subtitles */
+  --text-entry: 1.25rem; /* 20px — job / project / article titles */
+  --text-entry--line-height: 1.35;
+  --text-name: 1.625rem; /* 26px — sidebar name */
+  --text-section: 2.25rem; /* 36px — section headings */
+  --text-section--line-height: 1;
+  --text-display: 3rem; /* 48px — hero + Let's Connect headings */
+  --text-display--line-height: 1;
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+/* Nav links scroll instead of jumping; sections carry scroll-mt for the header. */
+html {
+  scroll-behavior: smooth;
+}
