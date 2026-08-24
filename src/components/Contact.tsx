@@ -35,7 +35,7 @@ export default function Contact() {
     <>
       <section
         id="contact"
-        className="scroll-mt-20 border-b border-line px-8 py-20 text-center"
+        className="scroll-mt-20 border-b border-line px-5 py-16 text-center sm:px-8 sm:py-20"
       >
         <div className="mx-auto max-w-[780px]">
           <h2 className="font-serif text-display">{connect.heading}</h2>
@@ -80,7 +80,7 @@ export default function Contact() {
         </div>
       </section>
 
-      <footer className="px-8 py-7">
+      <footer className="px-5 py-6 sm:px-8 sm:py-7">
         <div className="mx-auto flex max-w-[780px] items-center justify-between text-meta text-muted">
           <span>
             © {new Date().getFullYear()} {profile.name}

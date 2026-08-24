@@ -28,10 +28,26 @@
   --text-display--line-height: 1;
 }
 
+/*
+ * Phone-sized type scale. Overriding the same tokens keeps every component
+ * unchanged — the whole page steps down together.
+ */
+@media (width < 40rem) {
+  :root {
+    --text-entry: 1.125rem; /* 18px */
+    --text-name: 1.5rem; /* 24px */
+    --text-section: 1.75rem; /* 28px */
+    --text-display: 2.125rem; /* 34px */
+    --text-lead: 1rem; /* 16px */
+  }
+}
+
 body {
   background-color: var(--color-cream);
   color: var(--color-ink);
   font-family: var(--font-sans);
+  /* Long unbroken strings (URLs, emails) must never widen the page. */
+  overflow-wrap: break-word;
 }
 
 /* Nav links scroll instead of jumping; sections carry scroll-mt for the header. */

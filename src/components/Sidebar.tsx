@@ -12,30 +12,32 @@ const metaIcons = {
 
 export default function Sidebar() {
   return (
-    <aside className="flex h-full flex-col border-line px-6 py-6 lg:border-r">
-      <Image
-        // next/image only applies basePath via the optimizer, which is off for
-        // static export — so the prefix has to be added here.
-        src={asset(profile.avatar)}
-        alt={profile.name}
-        width={240}
-        height={240}
-        priority
-        className="h-[104px] w-[104px] rounded-md object-cover object-top"
-      />
-
-      <h1 className="mt-14 font-serif text-name leading-tight">
-        {profile.name}
-      </h1>
-      <p className="mt-1 text-meta text-muted">{profile.role}</p>
+    <aside className="flex h-full flex-col border-line px-5 py-6 sm:px-6 lg:border-r">
+      {/* Photo sits beside the name on phones, above it on the desktop rail. */}
+      <div className="flex items-center gap-4 lg:block">
+        <Image
+          // next/image only applies basePath via the optimizer, which is off for
+          // static export — so the prefix has to be added here.
+          src={asset(profile.avatar)}
+          alt={profile.name}
+          width={240}
+          height={240}
+          priority
+          className="size-[76px] shrink-0 rounded-md object-cover object-top sm:size-[88px] lg:size-[104px]"
+        />
+        <div className="min-w-0 lg:mt-14">
+          <h1 className="font-serif text-name leading-tight">{profile.name}</h1>
+          <p className="mt-1 text-meta text-muted">{profile.role}</p>
+        </div>
+      </div>
 
       <p className="mt-5 text-meta leading-relaxed text-muted">
         {profile.blurb}
       </p>
 
-      <hr className="my-6 border-line" />
+      <hr className="my-5 border-line lg:my-6" />
 
-      <ul className="space-y-3">
+      <ul className="flex flex-wrap gap-x-5 gap-y-3 lg:block lg:space-y-3">
         {profile.meta.map((item) => {
           const Icon = metaIcons[item.icon];
           return (
@@ -47,8 +49,8 @@ export default function Sidebar() {
         })}
       </ul>
 
-      {/* Pushes the social row and CTAs to the bottom of the rail. */}
-      <div className="mt-auto pt-10">
+      {/* Pushes the social row and CTAs to the bottom of the desktop rail. */}
+      <div className="mt-6 lg:mt-auto lg:pt-10">
         <ul className="flex gap-2">
           {profile.socials.map((social) => {
             const Icon = brandIcons[social.icon];
@@ -59,7 +61,7 @@ export default function Sidebar() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label={social.label}
-                  className="flex size-[38px] items-center justify-center rounded-md border border-line transition-colors hover:bg-surface"
+                  className="flex size-[42px] items-center justify-center rounded-md border border-line transition-colors hover:bg-surface sm:size-[38px]"
                 >
                   <Icon className="size-4" />
                 </a>
@@ -68,7 +70,7 @@ export default function Sidebar() {
           })}
         </ul>
 
-        <div className="mt-4 flex gap-2">
+        <div className="mt-3 flex gap-2 lg:mt-4">
           <a
             href={asset(profile.cvHref)}
             download
@@ -80,7 +82,7 @@ export default function Sidebar() {
           <a
             href={`mailto:${profile.email}`}
             aria-label="Email me"
-            className="flex size-[46px] items-center justify-center rounded-md border border-line bg-surface transition-colors hover:bg-line"
+            className="flex size-[46px] shrink-0 items-center justify-center rounded-md border border-line bg-surface transition-colors hover:bg-line"
           >
             <Mail className="size-4" />
           </a>

@@ -17,11 +17,11 @@ export function Section({
   return (
     <section
       id={id}
-      className={`scroll-mt-20 px-8 py-16 ${divider ? "border-b border-line" : ""}`}
+      className={`scroll-mt-20 px-5 py-12 sm:px-8 sm:py-16 ${divider ? "border-b border-line" : ""}`}
     >
       <div className="mx-auto max-w-[780px]">
         <h2 className="font-serif text-section">{title}</h2>
-        <div className="mt-10">{children}</div>
+        <div className="mt-8 sm:mt-10">{children}</div>
       </div>
     </section>
   );
@@ -70,7 +70,8 @@ export function EntryRow({
     <li>
       <div className="flex gap-4">
         {tile ? <InitialTile label={entry.org ?? entry.title} /> : null}
-        <div className="flex min-w-0 flex-1 items-start justify-between gap-6">
+        {/* Date drops below the title on phones instead of squeezing it. */}
+        <div className="flex min-w-0 flex-1 flex-col gap-1 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
           <div className="min-w-0">
             <h3 className="text-entry font-medium">
               {entry.href ? (
@@ -98,14 +99,15 @@ export function EntryRow({
               </p>
             ) : null}
           </div>
-          <span className="shrink-0 pt-0.5 text-meta whitespace-nowrap text-muted">
+          <span className="shrink-0 text-meta text-muted sm:pt-0.5 sm:whitespace-nowrap">
             {entry.period}
           </span>
         </div>
       </div>
 
       {body ? (
-        <div className={`mt-3 max-w-[640px] ${tile ? "pl-[62px]" : ""}`}>
+        // The 62px indent aligns with the tile, but costs too much width on phones.
+        <div className={`mt-3 max-w-[640px] ${tile ? "sm:pl-[62px]" : ""}`}>
           {entry.summary ? (
             <p className="text-meta leading-relaxed text-muted">
               {entry.summary}

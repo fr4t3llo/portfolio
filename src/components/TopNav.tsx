@@ -1,7 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CircleUserRound, MessageCircleMore } from "lucide-react";
+import {
+  CircleUserRound,
+  Menu,
+  MessageCircleMore,
+  X,
+} from "lucide-react";
 import { nav } from "@/data/profile";
 
 const ids = nav.map((item) => item.href.slice(1));
@@ -9,6 +14,7 @@ const ids = nav.map((item) => item.href.slice(1));
 export default function TopNav() {
   const [active, setActive] = useState<string>(ids[0]);
   const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -17,13 +23,27 @@ export default function TopNav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Close the mobile menu on Escape, and whenever the viewport reaches desktop.
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    const mq = window.matchMedia("(min-width: 48rem)");
+    const onChange = () => mq.matches && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    mq.addEventListener("change", onChange);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      mq.removeEventListener("change", onChange);
+    };
+  }, [open]);
+
   useEffect(() => {
     const sections = ids
       .map((id) => document.getElementById(id))
       .filter((el): el is HTMLElement => el !== null);
 
     /**
-     * Pick the last section whose top has passed just below the sticky header.
+     * Pick the last section whose top has passed just below the fixed header.
      * Sections are taller than the viewport, so tracking the crossing point is
      * steadier here than reacting to individual intersection events.
      */
@@ -49,51 +69,101 @@ export default function TopNav() {
     };
   }, []);
 
+  const linkClass = (href: string) =>
+    `transition-colors hover:text-accent ${
+      active === href.slice(1) ? "text-accent" : ""
+    }`;
+
   return (
     <header
-      className={`sticky top-0 z-10 bg-cream/85 backdrop-blur-sm transition-colors ${
-        scrolled ? "border-b border-line" : "border-b border-transparent"
+      className={`fixed inset-x-0 top-0 z-20 bg-cream/90 backdrop-blur-sm transition-colors lg:left-[330px] ${
+        scrolled || open ? "border-b border-line" : "border-b border-transparent"
       }`}
     >
-      <div className="flex items-center justify-between gap-6 px-8 py-4">
-        {/* Spacer keeps the nav optically centred against the right-hand CTA. */}
+      <div className="flex h-16 items-center justify-between gap-4 px-5 sm:px-8">
+        {/* Spacer balances the nav against the right-hand CTA on wide screens. */}
         <div className="hidden flex-1 xl:block" />
 
-        <nav className="flex items-center gap-5">
+        <CircleUserRound
+          className="size-6 shrink-0 text-accent md:hidden"
+          strokeWidth={1.75}
+        />
+
+        <nav className="hidden items-center gap-5 md:flex">
           <CircleUserRound
             className="size-6 shrink-0 text-accent"
             strokeWidth={1.75}
           />
           <ul className="flex items-center gap-4 text-meta">
-            {nav.map((item) => {
-              const isActive = active === item.href.slice(1);
-              return (
-                <li key={item.label}>
-                  <a
-                    href={item.href}
-                    aria-current={isActive ? "true" : undefined}
-                    className={`transition-colors hover:text-accent ${
-                      isActive ? "text-accent" : ""
-                    }`}
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              );
-            })}
+            {nav.map((item) => (
+              <li key={item.label}>
+                <a
+                  href={item.href}
+                  aria-current={
+                    active === item.href.slice(1) ? "true" : undefined
+                  }
+                  className={linkClass(item.href)}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
           </ul>
         </nav>
 
-        <div className="flex flex-1 justify-end">
+        <div className="flex flex-1 items-center justify-end gap-2">
           <a
             href="#contact"
-            className="flex h-10 items-center gap-2 rounded-md bg-ink px-4 text-meta font-medium text-cream transition-opacity hover:opacity-90"
+            className="hidden h-10 items-center gap-2 rounded-md bg-ink px-4 text-meta font-medium text-cream transition-opacity hover:opacity-90 md:flex"
           >
             <MessageCircleMore className="size-4" />
             Contact Me
           </a>
+
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            aria-label={open ? "Close menu" : "Open menu"}
+            className="flex size-10 items-center justify-center rounded-md border border-line transition-colors hover:bg-surface md:hidden"
+          >
+            {open ? <X className="size-5" /> : <Menu className="size-5" />}
+          </button>
         </div>
       </div>
+
+      {open ? (
+        <nav
+          id="mobile-menu"
+          className="border-t border-line bg-cream px-5 pt-2 pb-4 md:hidden"
+        >
+          <ul className="flex flex-col">
+            {nav.map((item) => (
+              <li key={item.label}>
+                <a
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  aria-current={
+                    active === item.href.slice(1) ? "true" : undefined
+                  }
+                  className={`block py-2.5 text-[15px] ${linkClass(item.href)}`}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <a
+            href="#contact"
+            onClick={() => setOpen(false)}
+            className="mt-3 flex h-11 items-center justify-center gap-2 rounded-md bg-ink text-meta font-medium text-cream"
+          >
+            <MessageCircleMore className="size-4" />
+            Contact Me
+          </a>
+        </nav>
+      ) : null}
     </header>
   );
 }

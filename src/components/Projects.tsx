@@ -31,12 +31,12 @@ export default function Projects() {
                   href={project.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="group flex items-center gap-4 rounded-sm transition-colors hover:bg-surface/60"
+                  className="group flex items-start gap-4 rounded-sm transition-colors hover:bg-surface/60 sm:items-center"
                 >
                   {body}
                 </a>
               ) : (
-                <div className="flex items-center gap-4">{body}</div>
+                <div className="flex items-start gap-4 sm:items-center">{body}</div>
               )}
             </li>
           );
