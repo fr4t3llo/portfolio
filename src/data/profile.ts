@@ -17,7 +17,7 @@ export const profile = {
     {
       icon: "linkedin",
       label: "LinkedIn",
-      href: "https://www.linkedin.com/in/saifeddine-kasmi/",
+      href: "https://www.linkedin.com/in/saifeddinekasmi/",
     },
     { icon: "github", label: "GitHub", href: "https://github.com/fr4t3llo" },
   ],
