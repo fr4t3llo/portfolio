@@ -31,10 +31,12 @@ jobs:
       - run: npm ci
 
       - name: Build static site
-        # Repo is served from /portfolio. Remove this env block if you move the
-        # site to a user page (a repo named <user>.github.io).
-        env:
-          NEXT_PUBLIC_BASE_PATH: /portfolio
+        # Served from the root of a custom domain, so no basePath.
+        #
+        # If you ever drop the custom domain and go back to the project-page URL
+        # (https://fr4t3llo.github.io/portfolio/), restore the subpath prefix:
+        #   env:
+        #     NEXT_PUBLIC_BASE_PATH: /portfolio
         run: npm run build
 
       - uses: actions/configure-pages@v5

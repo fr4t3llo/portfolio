@@ -1,12 +1,14 @@
 import type { NextConfig } from "next";
 
 /**
- * GitHub Pages serves a project repo from a subpath — https://<user>.github.io/portfolio —
- * so the build needs a basePath. The CI workflow sets NEXT_PUBLIC_BASE_PATH=/portfolio;
- * local `npm run dev` leaves it empty and serves from the root.
+ * Where the site is served from.
  *
- * Publishing at a user page instead (a repo named <user>.github.io)? Drop the env var
- * from the workflow and everything serves from "/".
+ * A custom domain (and a <user>.github.io user page) serves from the root, so
+ * this stays empty — the default.
+ *
+ * A bare project page serves from a subpath instead — https://<user>.github.io/portfolio —
+ * and needs NEXT_PUBLIC_BASE_PATH=/portfolio set at build time, or every asset
+ * URL points at the wrong place and the CSS 404s.
  */
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
