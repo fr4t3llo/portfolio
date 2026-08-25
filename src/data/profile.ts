@@ -73,6 +73,12 @@ export type Project = {
    * back to the first screenshot, then to an initial tile.
    */
   icon?: string;
+  /**
+   * "cover" (default) fills the tile — for real app icons, which are already
+   * square and rounded. "contain" pads the mark inside a surface tile, for
+   * bare logos that would otherwise look weightless next to them.
+   */
+  iconFit?: "cover" | "contain";
   /** External link for projects without a detail page. */
   href?: string;
 };
@@ -208,6 +214,8 @@ export const projects: Project[] = [
     name: "Swifty Companion",
     description:
       "Authenticates with the 42 Intra API to search 42 network users, showing detailed profiles with validated, failed, and in-progress projects alongside completed skills.",
+    icon: "/projects/shared/flutter.webp",
+    iconFit: "contain",
   },
   {
     name: "Protein App",
@@ -232,6 +240,8 @@ export const projects: Project[] = [
     tech: ["Flutter", "Dart", "Open-Meteo API"],
     repo: "https://github.com/fr4t3llo/Mobile/tree/main/mobileModule03/advanced_weather_app",
     shots: 3,
+    icon: "/projects/shared/flutter.webp",
+    iconFit: "contain",
   },
   {
     name: "Hangouts",
@@ -284,6 +294,8 @@ export const projects: Project[] = [
     tech: ["Flutter", "Dart", "Firebase"],
     repo: "https://github.com/fr4t3llo/Mobile/tree/main/mobileModule04/diary_app",
     shots: 3,
+    icon: "/projects/shared/flutter.webp",
+    iconFit: "contain",
   },
 ];
 

@@ -12,7 +12,19 @@ export default function Projects() {
         {projects.map((project) => {
           const body = (
             <>
-              {project.icon ? (
+              {project.icon && project.iconFit === "contain" ? (
+                // A bare logo mark: padded on a plate so it matches the weight
+                // of the full-bleed app icons beside it.
+                <span className="flex size-[56px] shrink-0 items-center justify-center rounded-[12px] bg-surface p-3">
+                  <Image
+                    src={asset(project.icon)}
+                    alt=""
+                    width={256}
+                    height={256}
+                    className="size-full object-contain"
+                  />
+                </span>
+              ) : project.icon ? (
                 // App icons are square and already rounded, so they fill the
                 // tile with no plate behind them.
                 <Image
