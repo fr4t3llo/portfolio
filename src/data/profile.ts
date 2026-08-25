@@ -211,6 +211,7 @@ export const projects: Project[] = [
     name: "Protein App",
     description:
       "Explore scientific models like H2O and Carbon and view them in 3D. Sign in with Google Firebase, with fingerprint and Face ID authentication.",
+    icon: "/projects/protein/icon.webp",
   },
   {
     name: "Accuweather App",
