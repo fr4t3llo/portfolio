@@ -187,6 +187,7 @@ export const projects: Project[] = [
     name: "REPaiR",
     description:
       "Helps users repair broken items. Take a picture of the item — a broken chair, say — and the app returns a step-by-step guide to fix it along with the specific tools required.",
+    icon: "/projects/repair/icon.webp",
   },
   {
     name: "LEET Event",
