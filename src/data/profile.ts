@@ -200,6 +200,7 @@ export const projects: Project[] = [
     name: "Ozzy Shuttle",
     description:
       "A real-time transport tracking app built with Flutter and Firestore, with live driver location, student pickup status, and optimised routes.",
+    icon: "/projects/ozzy-shuttle/icon.webp",
   },
   {
     name: "Swifty Companion",
