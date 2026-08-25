@@ -241,6 +241,7 @@ export const projects: Project[] = [
     ],
     repo: "https://github.com/fr4t3llo/ft_hangouts",
     shots: 4,
+    icon: "/projects/hangouts/icon.webp",
   },
   {
     name: "Wallpaperify",
