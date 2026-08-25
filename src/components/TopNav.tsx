@@ -11,8 +11,15 @@ import { nav } from "@/data/profile";
 
 const ids = nav.map((item) => item.href.slice(1));
 
-export default function TopNav() {
-  const [active, setActive] = useState<string>(ids[0]);
+export default function TopNav({
+  variant = "home",
+}: {
+  variant?: "home" | "detail";
+}) {
+  // On a detail page the sections live back on "/", so nothing is spied here.
+  const isHome = variant === "home";
+  const hrefFor = (href: string) => (isHome ? href : `/${href}`);
+  const [active, setActive] = useState<string>(isHome ? ids[0] : "");
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -38,6 +45,7 @@ export default function TopNav() {
   }, [open]);
 
   useEffect(() => {
+    if (!isHome) return;
     const sections = ids
       .map((id) => document.getElementById(id))
       .filter((el): el is HTMLElement => el !== null);
@@ -67,7 +75,7 @@ export default function TopNav() {
       window.removeEventListener("scroll", update);
       window.removeEventListener("resize", update);
     };
-  }, []);
+  }, [isHome]);
 
   const linkClass = (href: string) =>
     `transition-colors hover:text-accent ${
@@ -98,7 +106,7 @@ export default function TopNav() {
             {nav.map((item) => (
               <li key={item.label}>
                 <a
-                  href={item.href}
+                  href={hrefFor(item.href)}
                   aria-current={
                     active === item.href.slice(1) ? "true" : undefined
                   }
@@ -113,7 +121,7 @@ export default function TopNav() {
 
         <div className="flex flex-1 items-center justify-end gap-2">
           <a
-            href="#contact"
+            href={hrefFor("#contact")}
             className="hidden h-10 items-center gap-2 rounded-md bg-ink px-4 text-meta font-medium text-cream transition-opacity hover:opacity-90 md:flex"
           >
             <MessageCircleMore className="size-4" />
@@ -142,7 +150,7 @@ export default function TopNav() {
             {nav.map((item) => (
               <li key={item.label}>
                 <a
-                  href={item.href}
+                  href={hrefFor(item.href)}
                   onClick={() => setOpen(false)}
                   aria-current={
                     active === item.href.slice(1) ? "true" : undefined
@@ -155,7 +163,7 @@ export default function TopNav() {
             ))}
           </ul>
           <a
-            href="#contact"
+            href={hrefFor("#contact")}
             onClick={() => setOpen(false)}
             className="mt-3 flex h-11 items-center justify-center gap-2 rounded-md bg-ink text-meta font-medium text-cream"
           >

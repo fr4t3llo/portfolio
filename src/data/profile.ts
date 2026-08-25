@@ -53,9 +53,23 @@ export type Entry = {
 
 export type Project = {
   name: string;
+  /** One-line summary shown in the Projects list. */
   description: string;
+  /**
+   * Present only for projects with screenshots — gives the project its own
+   * page at /projects/<slug> and makes the list row clickable.
+   */
+  slug?: string;
+  /** Longer overview shown at the top of the detail page. */
+  summary?: string;
+  features?: string[];
+  tech?: string[];
+  /** Source repository, linked from the detail page. */
+  repo?: string;
+  /** Screenshot count; files live at /projects/<slug>/01.webp, 02.webp, … */
+  shots?: number;
+  /** External link for projects without a detail page. */
   href?: string;
-  image?: string;
 };
 
 export const about = [
@@ -157,7 +171,7 @@ export const volunteering: Entry[] = [
   },
 ];
 
-/** `href` is optional — rows without one render as plain, non-clickable items. */
+/** Projects with a `slug` get their own page and a clickable list row. */
 export const projects: Project[] = [
   {
     name: "Storywonder App",
@@ -191,23 +205,71 @@ export const projects: Project[] = [
   },
   {
     name: "Accuweather App",
+    slug: "accuweather-app",
     description:
       "Built with Flutter and the Open-Meteo API. Search for a city and get current, daily, and weekly weather in a friendly, intuitive interface.",
+    summary:
+      "Check the weather anywhere in the world. Search for any city and get current conditions, a daily forecast, and a weekly outlook — delivered through the Open-Meteo API with a responsive, intuitive interface.",
+    features: [
+      "City search covering worldwide locations",
+      "Real-time current weather conditions",
+      "Daily forecast with hourly temperature detail",
+      "Weekly outlook at a glance",
+      "Cross-platform on both Android and iOS",
+    ],
+    tech: ["Flutter", "Dart", "Open-Meteo API"],
+    repo: "https://github.com/fr4t3llo/Mobile/tree/main/mobileModule03/advanced_weather_app",
+    shots: 3,
   },
   {
-    name: "Hangout",
+    name: "Hangouts",
+    slug: "hangouts",
     description:
       "Create, edit, and delete contacts, send messages, make phone calls, and switch the app's language between English and Spanish.",
+    summary:
+      "A contact-book app covering the full lifecycle of a contact — create, view, edit and delete — with messaging and calling wired straight through to the device, and the whole interface switchable between English and Spanish.",
+    features: [
+      "Create, view, edit and delete contacts",
+      "Send a message or place a call directly from a contact",
+      "Confirmation dialogs guarding destructive actions",
+      "Full interface localisation between English and Spanish",
+    ],
+    repo: "https://github.com/fr4t3llo/ft_hangouts",
+    shots: 4,
   },
   {
     name: "Wallpaperify",
+    slug: "wallpaperify",
     description:
       "Search for wallpapers and download them locally, powered by the Pexels API.",
+    summary:
+      "A wallpaper browser built on the Pexels API. Search the full library or browse curated categories, then download any wallpaper straight to your device.",
+    features: [
+      "Search the Pexels wallpaper library",
+      "Browse curated categories",
+      "Masonry grid tuned for tall wallpaper crops",
+      "Download wallpapers locally to the device",
+    ],
+    tech: ["Flutter", "Dart", "Pexels API"],
+    repo: "https://github.com/fr4t3llo/wallpaperify",
+    shots: 3,
   },
   {
     name: "Diary App",
+    slug: "diary-app",
     description:
       "A daily diary that lets you log your feelings and thoughts for each day, with the date and a personal description.",
+    summary:
+      "A simple diary app that lets users create, view and delete entries, each tied to a date and an emoji mood. Sign-in runs through Firebase Google authentication so entries stay tied to the person who wrote them.",
+    features: [
+      "Sign in with Google, backed by Firebase authentication",
+      "Create, edit and delete diary entries",
+      "Tag each entry with a date and an emoji mood",
+      "Entries listed newest-first on a personal dashboard",
+    ],
+    tech: ["Flutter", "Dart", "Firebase"],
+    repo: "https://github.com/fr4t3llo/Mobile/tree/main/mobileModule04/diary_app",
+    shots: 3,
   },
 ];
 
