@@ -1,0 +1,87 @@
+name: Fill contribution gaps
+
+# Commits once, late in the day, ONLY if the day would otherwise be empty.
+# If you have already committed / opened a PR / reviewed anything today —
+# anywhere on GitHub — this does nothing.
+on:
+  schedule:
+    # 20:00 UTC = 21:00 in Morocco. Deliberately not near midnight: GitHub
+    # delays scheduled runs under load (often 10-30min, sometimes more), and a
+    # run that slips past 00:00 would mark the wrong day on the graph.
+    - cron: "0 20 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fill-gap:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Count today's contributions
+        id: check
+        env:
+          # Fine-grained or classic PAT with `read:user`. GITHUB_TOKEN cannot
+          # read contribution data, so this must be a personal token.
+          GH_PAT: ${{ secrets.CONTRIB_READ_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "${GH_PAT:-}" ]; then
+            echo "::error::Secret CONTRIB_READ_TOKEN is not set — see README."
+            exit 1
+          fi
+
+          # Bound the window to the local calendar day, so the answer matches
+          # the square the graph will actually paint.
+          export TZ=Africa/Casablanca
+          from=$(date +%Y-%m-%dT00:00:00%:z)
+          to=$(date +%Y-%m-%dT23:59:59%:z)
+          echo "Window: $from .. $to"
+
+          response=$(curl -sS -f -X POST https://api.github.com/graphql \
+            -H "Authorization: bearer $GH_PAT" \
+            -H "Content-Type: application/json" \
+            -d "$(jq -n --arg from "$from" --arg to "$to" '{
+              query: "query($from:DateTime!,$to:DateTime!){viewer{login contributionsCollection(from:$from,to:$to){contributionCalendar{totalContributions}}}}",
+              variables: {from: $from, to: $to}
+            }')")
+
+          if echo "$response" | jq -e '.errors' >/dev/null 2>&1; then
+            echo "::error::GraphQL error: $(echo "$response" | jq -c '.errors')"
+            exit 1
+          fi
+
+          count=$(echo "$response" | jq -r '.data.viewer.contributionsCollection.contributionCalendar.totalContributions')
+          login=$(echo "$response" | jq -r '.data.viewer.login')
+          echo "Contributions today for $login: $count"
+          echo "count=$count" >> "$GITHUB_OUTPUT"
+
+      - name: Commit only when the day is empty
+        if: steps.check.outputs.count == '0'
+        run: |
+          set -euo pipefail
+          export TZ=Africa/Casablanca
+
+          # Author identity must be an email VERIFIED on the GitHub account,
+          # or the commit is attributed to nobody and the graph stays grey.
+          git config user.name "fr4t3llo"
+          git config user.email "saife.addine123@gmail.com"
+
+          printf '%s\n' "$(date +%Y-%m-%d)" >> .github/activity.log
+          git add .github/activity.log
+          git commit -m "chore: activity log $(date +%Y-%m-%d)"
+
+          # Pushing with GITHUB_TOKEN deliberately does NOT trigger other
+          # workflows, so this never fires a pointless site redeploy.
+          git push
+
+      - name: Report
+        run: |
+          if [ "${{ steps.check.outputs.count }}" = "0" ]; then
+            echo "Day was empty — committed."
+          else
+            echo "Already ${{ steps.check.outputs.count }} contribution(s) today — nothing to do."
+          fi

@@ -3,6 +3,10 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+    # The activity log never changes the site, so a push touching only that
+    # file must not rebuild and redeploy it.
+    paths-ignore:
+      - ".github/activity.log"
   # Lets you re-run a deploy from the Actions tab without pushing.
   workflow_dispatch:
 
