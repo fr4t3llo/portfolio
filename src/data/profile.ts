@@ -194,6 +194,7 @@ export const projects: Project[] = [
     name: "LEET Event",
     description:
       "Lets 1337 students and staff discover and join workshops, talks, and coding nights. Features 42 Intra authentication, RSVP with calendar integration, automatic reminders, QR-code check-in, post-event feedback, and an admin dashboard for organisers.",
+    icon: "/projects/leet-event/icon.webp",
   },
   {
     name: "Ozzy Shuttle",
