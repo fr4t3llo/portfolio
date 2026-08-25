@@ -134,10 +134,10 @@ export const education: Entry[] = [
       "A two-year program in computer development covering C, HTML, CSS, JavaScript, jQuery, and .NET.",
   },
   {
-    // The Moroccan Baccalauréat is a school-leaving diploma, not a university
-    // degree — "Bachelor's Degree" on the CV reads as the latter in English.
-    title: "Baccalaureate (High School Diploma)",
-    org: "Ibn Tofail High School",
+    // Not a "Bachelor's Degree" as the CV renders it — that reads as a
+    // university undergraduate degree in English.
+    title: "Baccalauréat",
+    org: "Ibn Tofail",
     location: "Oued Zem",
     period: "2018",
   },
