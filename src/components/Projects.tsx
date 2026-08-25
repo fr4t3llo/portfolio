@@ -12,8 +12,18 @@ export default function Projects() {
         {projects.map((project) => {
           const body = (
             <>
-              {project.slug ? (
-                // First screenshot doubles as the row thumbnail.
+              {project.icon ? (
+                // App icons are square and already rounded, so they fill the
+                // tile with no plate behind them.
+                <Image
+                  src={asset(project.icon)}
+                  alt=""
+                  width={256}
+                  height={256}
+                  className="size-[56px] shrink-0 rounded-[12px]"
+                />
+              ) : project.slug ? (
+                // Otherwise the first screenshot doubles as the row thumbnail.
                 <span className="flex size-[56px] shrink-0 items-center justify-center overflow-hidden rounded-sm bg-surface">
                   <Image
                     src={asset(`/projects/${project.slug}/01.webp`)}

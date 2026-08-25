@@ -68,6 +68,11 @@ export type Project = {
   repo?: string;
   /** Screenshot count; files live at /projects/<slug>/01.webp, 02.webp, … */
   shots?: number;
+  /**
+   * App icon, used as the Projects list thumbnail. Without one the row falls
+   * back to the first screenshot, then to an initial tile.
+   */
+  icon?: string;
   /** External link for projects without a detail page. */
   href?: string;
 };
@@ -253,6 +258,7 @@ export const projects: Project[] = [
     tech: ["Flutter", "Dart", "Pexels API"],
     repo: "https://github.com/fr4t3llo/wallpaperify",
     shots: 3,
+    icon: "/projects/wallpaperify/icon.webp",
   },
   {
     name: "Diary App",
