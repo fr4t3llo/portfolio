@@ -182,6 +182,7 @@ export const projects: Project[] = [
     name: "Storywonder App",
     description:
       "Lets parents create personalised stories for their children. Parents build a child profile — name, age, eye colour, hair colour — and describe the story they want; GPT-4 and Stable Diffusion generate a detailed, customised result.",
+    icon: "/projects/storywonder/icon.webp",
   },
   {
     name: "REPaiR",
