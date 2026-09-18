@@ -9,7 +9,7 @@ export const profile = {
   tagline:
     "Cross-platform Flutter apps for Android & iOS, with a pulse on AI.",
   meta: [
-    { icon: "location", label: "Khouribga, Morocco" },
+    { icon: "location", label: "Paris, France" },
     { icon: "briefcase", label: "3+ years experience" },
     { icon: "globe", label: "Open to remote work" },
   ],
