@@ -126,7 +126,7 @@ export const education: Entry[] = [
   {
     title: "Software Engineer",
     org: "1337 Coding School",
-    location: "Khouribga",
+    location: "Khouribga, Morocco",
     period: "Aug 2021 – Present",
     summary:
       "Developed skills across networking, low-level programming (C and C++), Docker, web development, mobile development, and algorithms.",
@@ -134,7 +134,7 @@ export const education: Entry[] = [
   {
     title: "Specialized Technician in Computer Development",
     org: "ISGI",
-    location: "Khouribga",
+    location: "Khouribga, Morocco",
     period: "2019 – 2021",
     summary:
       "A two-year program in computer development covering C, HTML, CSS, JavaScript, jQuery, and .NET.",
@@ -144,7 +144,7 @@ export const education: Entry[] = [
     // university undergraduate degree in English.
     title: "Baccalauréat",
     org: "Ibn Tofail",
-    location: "Oued Zem",
+    location: "Oued Zem, Morocco",
     period: "2018",
   },
 ];
@@ -173,13 +173,13 @@ export const volunteering: Entry[] = [
   {
     title: "Moroccan National Programming Contest",
     org: "MNPC",
-    location: "Khouribga",
+    location: "Khouribga, Morocco",
     period: "2022",
   },
   {
     title: "Africa Middle East Space Conference",
     org: "AMESC 2025",
-    location: "UM6P, Rabat",
+    location: "UM6P, Rabat, Morocco",
     period: "2025",
   },
 ];
