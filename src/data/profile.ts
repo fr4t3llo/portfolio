@@ -24,6 +24,9 @@ export const profile = {
   cvHref: "/cv.pdf",
   email: "kasmisaifeddine@gmail.com",
   whatsapp: { display: "+212 661189840", href: "https://wa.me/212661189840" },
+  // French line, kept alongside the Moroccan WhatsApp number rather than
+  // replacing it — reachable from both countries.
+  phone: { display: "+33 7 53 89 12 00", href: "tel:+33753891200" },
 } as const;
 
 /**

@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Mail } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 import { connect, profile } from "@/data/profile";
 import { brandIcons, WhatsAppIcon } from "./icons";
 
@@ -8,16 +8,18 @@ function ContactCard({
   label,
   value,
   href,
+  className = "",
 }: {
   icon: ReactNode;
   label: string;
   value: string;
   href: string;
+  className?: string;
 }) {
   return (
     <a
       href={href}
-      className="flex flex-1 items-center gap-3.5 rounded-sm bg-surface p-3.5 transition-colors hover:bg-line"
+      className={`flex items-center gap-3.5 rounded-sm bg-surface p-3.5 transition-colors hover:bg-line ${className}`}
     >
       <span className="flex size-[46px] shrink-0 items-center justify-center rounded-sm bg-accent text-cream">
         {icon}
@@ -43,12 +45,24 @@ export default function Contact() {
             {connect.subtitle}
           </p>
 
-          <div className="mt-10 flex flex-col gap-2.5 sm:flex-row">
+          {/*
+            Three cards in two columns: the address is by far the longest value,
+            so it spans the row and the two short numbers pair up beneath it.
+            One column on phones.
+          */}
+          <div className="mt-10 grid gap-2.5 sm:grid-cols-2">
             <ContactCard
               icon={<Mail className="size-[18px]" />}
               label="Email Me"
               value={profile.email}
               href={`mailto:${profile.email}`}
+              className="sm:col-span-2"
+            />
+            <ContactCard
+              icon={<Phone className="size-[18px]" />}
+              label="Call Me"
+              value={profile.phone.display}
+              href={profile.phone.href}
             />
             <ContactCard
               icon={<WhatsAppIcon className="size-[18px]" />}
