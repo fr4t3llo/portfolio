@@ -1,10 +1,11 @@
 import Image from "next/image";
-import { Briefcase, Download, Globe, Mail, MapPin } from "lucide-react";
+import { Briefcase, Download, Globe, Mail, MapPin, Phone } from "lucide-react";
 import { brandIcons } from "./icons";
 import { profile } from "@/data/profile";
 import { asset } from "@/lib/asset";
 
 const metaIcons = {
+  phone: Phone,
   location: MapPin,
   briefcase: Briefcase,
   globe: Globe,
@@ -40,10 +41,17 @@ export default function Sidebar() {
       <ul className="flex flex-wrap gap-x-5 gap-y-3 lg:block lg:space-y-3">
         {profile.meta.map((item) => {
           const Icon = metaIcons[item.icon];
+          const href = "href" in item ? item.href : undefined;
           return (
             <li key={item.label} className="flex items-center gap-2.5 text-meta">
               <Icon className="size-4 shrink-0 text-ink" strokeWidth={2} />
-              {item.label}
+              {href ? (
+                <a href={href} className="transition-colors hover:text-accent">
+                  {item.label}
+                </a>
+              ) : (
+                item.label
+              )}
             </li>
           );
         })}

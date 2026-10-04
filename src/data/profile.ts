@@ -9,6 +9,7 @@ export const profile = {
   tagline:
     "Cross-platform Flutter apps for Android & iOS, with a pulse on AI.",
   meta: [
+    { icon: "phone", label: "+33 7 53 89 12 00", href: "tel:+33753891200" },
     { icon: "location", label: "Paris, France" },
     { icon: "briefcase", label: "3+ years experience" },
     { icon: "globe", label: "Open to remote work" },
