@@ -128,10 +128,16 @@ export const experience: Entry[] = [
 
 export const education: Entry[] = [
   {
+    title: "RNCP 7 – Network Information Systems Architecture",
+    org: "42 Paris",
+    location: "Paris, France",
+    period: "Oct 2026 – Present",
+  },
+  {
     title: "Software Engineer",
     org: "1337 Coding School",
     location: "Khouribga, Morocco",
-    period: "Aug 2021 – Present",
+    period: "Aug 2021 – Oct 2026",
     summary:
       "Developed skills across networking, low-level programming (C and C++), Docker, web development, mobile development, and algorithms.",
   },
