@@ -114,7 +114,9 @@ export function EntryRow({
             </p>
           ) : null}
           {entry.details ? (
-            <ul className="space-y-2 text-meta leading-relaxed text-muted">
+            <ul
+              className={`space-y-2 text-meta leading-relaxed text-muted ${entry.summary ? "mt-2" : ""}`}
+            >
               {entry.details.map((detail) => (
                 <li key={detail} className="flex gap-2.5">
                   <span aria-hidden className="text-accent">

@@ -1,4 +1,9 @@
-import { languages, skills, technologies } from "@/data/profile";
+import {
+  creativeSkills,
+  languages,
+  skills,
+  technologies,
+} from "@/data/profile";
 import { Section, Tag } from "./primitives";
 import TechIcon from "./TechIcon";
 
@@ -18,6 +23,10 @@ export default function Skills() {
             <TechIcon key={tech} name={tech} />
           ))}
         </ul>
+
+        <p className="mt-10 text-meta text-muted">
+          Also: {creativeSkills.join(" · ")}
+        </p>
       </Section>
 
       <Section title="Languages">

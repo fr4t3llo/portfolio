@@ -1,100 +1,119 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
-import { projects } from "@/data/profile";
+import { projectGroups, projects, type Project } from "@/data/profile";
 import { InitialTile, Section } from "./primitives";
 import { asset } from "@/lib/asset";
 
 export default function Projects() {
   return (
     <Section id="projects" title="Projects">
-      <ul className="space-y-7">
-        {projects.map((project) => {
-          const body = (
-            <>
-              {project.icon && project.iconFit === "contain" ? (
-                // A bare logo mark: padded on a plate so it matches the weight
-                // of the full-bleed app icons beside it.
-                <span className="flex size-[56px] shrink-0 items-center justify-center rounded-[12px] bg-surface p-3">
-                  <Image
-                    src={asset(project.icon)}
-                    alt=""
-                    width={256}
-                    height={256}
-                    className="size-full object-contain"
-                  />
-                </span>
-              ) : project.icon ? (
-                // App icons are square and already rounded, so they fill the
-                // tile with no plate behind them.
+      <div className="space-y-12">
+        {projectGroups.map((group) => {
+          const items = projects.filter((p) => p.kind === group.kind);
+          if (items.length === 0) return null;
+          return (
+            <div key={group.kind}>
+              <p className="mb-6 text-meta font-medium tracking-wide text-muted uppercase">
+                {group.title}
+              </p>
+              <ProjectList items={items} />
+            </div>
+          );
+        })}
+      </div>
+    </Section>
+  );
+}
+
+function ProjectList({ items }: { items: Project[] }) {
+  return (
+    <ul className="space-y-7">
+      {items.map((project) => {
+        const body = (
+          <>
+            {project.icon && project.iconFit === "contain" ? (
+              // A bare logo mark: padded on a plate so it matches the weight
+              // of the full-bleed app icons beside it.
+              <span className="flex size-[56px] shrink-0 items-center justify-center rounded-[12px] bg-surface p-3">
                 <Image
                   src={asset(project.icon)}
                   alt=""
                   width={256}
                   height={256}
-                  className="size-[56px] shrink-0 rounded-[12px]"
+                  className="size-full object-contain"
                 />
-              ) : project.slug ? (
-                // Otherwise the first screenshot doubles as the row thumbnail.
-                <span className="flex size-[56px] shrink-0 items-center justify-center overflow-hidden rounded-sm bg-surface">
-                  <Image
-                    src={asset(`/projects/${project.slug}/01.webp`)}
-                    alt=""
-                    width={552}
-                    height={1128}
-                    className="h-full w-auto object-contain"
-                  />
-                </span>
-              ) : (
-                <InitialTile label={project.name} size={56} />
-              )}
+              </span>
+            ) : project.icon ? (
+              // App icons are square and already rounded, so they fill the
+              // tile with no plate behind them.
+              <Image
+                src={asset(project.icon)}
+                alt=""
+                width={256}
+                height={256}
+                className="size-[56px] shrink-0 rounded-[12px]"
+              />
+            ) : project.slug ? (
+              // Otherwise the first screenshot doubles as the row thumbnail.
+              <span className="flex size-[56px] shrink-0 items-center justify-center overflow-hidden rounded-sm bg-surface">
+                <Image
+                  src={asset(`/projects/${project.slug}/01.webp`)}
+                  alt=""
+                  width={552}
+                  height={1128}
+                  className="h-full w-auto object-contain"
+                />
+              </span>
+            ) : (
+              <InitialTile label={project.name} size={56} />
+            )}
 
-              <div className="min-w-0 flex-1">
-                <h3 className="text-entry font-medium">{project.name}</h3>
-                <p className="mt-1 text-meta leading-relaxed text-muted">
-                  {project.description}
-                </p>
+            <div className="min-w-0 flex-1">
+              <h3 className="text-entry font-medium">{project.name}</h3>
+              <p className="mt-1 text-meta leading-relaxed text-muted">
+                {project.description}
+              </p>
+            </div>
+
+            {project.slug || project.href ? (
+              <span className="flex size-[38px] shrink-0 items-center justify-center rounded-sm bg-surface transition-colors group-hover:bg-line">
+                {project.slug ? (
+                  <ArrowRight className="size-[18px]" />
+                ) : (
+                  <ArrowUpRight className="size-[18px]" />
+                )}
+              </span>
+            ) : null}
+          </>
+        );
+
+        const rowClass =
+          "group flex items-start gap-4 rounded-sm transition-colors hover:bg-surface/60 sm:items-center";
+
+        return (
+          <li key={project.name}>
+            {project.slug ? (
+              <Link href={`/projects/${project.slug}`} className={rowClass}>
+                {body}
+              </Link>
+            ) : project.href ? (
+              <a
+                href={project.href}
+                target="_blank"
+                rel="noreferrer"
+                className={rowClass}
+              >
+                {body}
+              </a>
+            ) : (
+              <div className="flex items-start gap-4 sm:items-center">
+                {body}
               </div>
-
-              {project.slug || project.href ? (
-                <span className="flex size-[38px] shrink-0 items-center justify-center rounded-sm bg-surface transition-colors group-hover:bg-line">
-                  {project.slug ? (
-                    <ArrowRight className="size-[18px]" />
-                  ) : (
-                    <ArrowUpRight className="size-[18px]" />
-                  )}
-                </span>
-              ) : null}
-            </>
-          );
-
-          const rowClass =
-            "group flex items-start gap-4 rounded-sm transition-colors hover:bg-surface/60 sm:items-center";
-
-          return (
-            <li key={project.name}>
-              {project.slug ? (
-                <Link href={`/projects/${project.slug}`} className={rowClass}>
-                  {body}
-                </Link>
-              ) : project.href ? (
-                <a
-                  href={project.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className={rowClass}
-                >
-                  {body}
-                </a>
-              ) : (
-                <div className="flex items-start gap-4 sm:items-center">
-                  {body}
-                </div>
-              )}
-            </li>
-          );
-        })}
-      </ul>
-    </Section>
+            )}
+          </li>
+        );
+      })}
+    </ul>
   );
 }

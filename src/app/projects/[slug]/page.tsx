@@ -20,9 +20,16 @@ export async function generateMetadata({
   const { slug } = await params;
   const project = detailed.find((p) => p.slug === slug);
   if (!project) return {};
+  const title = `${project.name} — ${profile.name}`;
+  const description = project.summary ?? project.description;
+  const url = `/projects/${project.slug}/`;
   return {
-    title: `${project.name} — ${profile.name}`,
-    description: project.summary ?? project.description,
+    title,
+    description,
+    alternates: { canonical: url },
+    // Overriding openGraph drops the root image, so point back at it.
+    openGraph: { url, title, description, images: "/opengraph-image.png" },
+    twitter: { title, description, images: "/opengraph-image.png" },
   };
 }
 

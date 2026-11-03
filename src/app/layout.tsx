@@ -13,9 +13,26 @@ const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
 });
 
+const title = `${profile.name} — ${profile.role}`;
+
 export const metadata: Metadata = {
-  title: `${profile.name} — ${profile.role}`,
-  description: profile.tagline,
+  metadataBase: new URL(profile.siteUrl),
+  title,
+  description: profile.blurb,
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    url: "/",
+    siteName: profile.name,
+    title,
+    description: profile.blurb,
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description: profile.blurb,
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

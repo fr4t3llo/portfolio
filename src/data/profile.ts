@@ -2,12 +2,13 @@
 
 export const profile = {
   name: "Saifeddine Kasmi",
+  /** Canonical origin — used for metadata, the sitemap and share previews. */
+  siteUrl: "https://skasmi.tech",
   role: "Mobile Software Engineer",
   avatar: "/avatar.jpg",
   blurb:
     "Building cross-platform Flutter applications for Android and iOS, with a focus on AI-powered features and real-time systems.",
-  tagline:
-    "Cross-platform Flutter apps for Android & iOS, with a pulse on AI.",
+  tagline: "Cross-platform Flutter apps for Android & iOS, with a pulse on AI.",
   meta: [
     { icon: "phone", label: "+33 7 53 89 12 00", href: "tel:+33753891200" },
     { icon: "location", label: "Paris, France" },
@@ -85,12 +86,24 @@ export type Project = {
   iconFit?: "cover" | "contain";
   /** External link for projects without a detail page. */
   href?: string;
+  /** Which subsection of Projects the row is listed under. */
+  kind: ProjectKind;
 };
+
+export type ProjectKind = "professional" | "personal" | "curriculum";
+
+/** Subsections of Projects, in display order. */
+export const projectGroups: { kind: ProjectKind; title: string }[] = [
+  { kind: "professional", title: "Professional work" },
+  { kind: "personal", title: "Side projects" },
+  { kind: "curriculum", title: "42 / 1337 curriculum" },
+];
 
 export const about = [
   "I'm a mobile developer with 3+ years of experience building cross-platform Flutter applications for Android and iOS.",
   "I work on AI-powered applications, Firebase, REST APIs, real-time communication, and scalable mobile architectures — from personalised story generation with GPT-4 and Stable Diffusion to live transport tracking on Firestore.",
   "I'm passionate about delivering high-performance user experiences and collaborating with cross-functional teams.",
+  "Currently, I'm working as a mobile developer while studying for the RNCP 7 IT Architect title at 42 Paris.",
 ] as const;
 
 export const experience: Entry[] = [
@@ -114,8 +127,11 @@ export const experience: Entry[] = [
     org: "AtlasAI",
     location: "Remote",
     period: "Dec 2023 – Jun 2024",
-    summary:
-      "Contributed to two mobile applications: REPaiR, an AI-powered tool that helps users repair broken items, and StoryWonder, a creative app that generates personalised bedtime stories featuring child characters.",
+    summary: "Contributed to two AI-powered Flutter applications:",
+    details: [
+      "REPaiR — users photograph a broken item and receive a step-by-step repair guide with the tools required.",
+      "StoryWonder — generates personalised bedtime stories starring the child, with text from GPT-4 and illustrations from Stable Diffusion.",
+    ],
   },
   {
     title: "Freelancer",
@@ -168,7 +184,7 @@ export const certifications: Entry[] = [
     href: "https://www.codingame.com/certification/t2ZpMM4g1gYwqU_5pBt4sw",
   },
   {
-    title: "Formation in Cinematography",
+    title: "Cinematography Training",
     org: "Act4Community by OCP",
     period: "2023",
   },
@@ -199,44 +215,52 @@ export const volunteering: Entry[] = [
 export const projects: Project[] = [
   {
     name: "Storywonder App",
+    kind: "professional",
     description:
       "Lets parents create personalised stories for their children. Parents build a child profile — name, age, eye colour, hair colour — and describe the story they want; GPT-4 and Stable Diffusion generate a detailed, customised result.",
     icon: "/projects/storywonder/icon.webp",
   },
   {
     name: "REPaiR",
+    kind: "professional",
     description:
       "Helps users repair broken items. Take a picture of the item — a broken chair, say — and the app returns a step-by-step guide to fix it along with the specific tools required.",
     icon: "/projects/repair/icon.webp",
   },
   {
     name: "LEET Event",
+    kind: "personal",
     description:
       "Lets 1337 students and staff discover and join workshops, talks, and coding nights. Features 42 Intra authentication, RSVP with calendar integration, automatic reminders, QR-code check-in, post-event feedback, and an admin dashboard for organisers.",
     icon: "/projects/leet-event/icon.webp",
   },
   {
     name: "Ozzy Shuttle",
+    kind: "professional",
     description:
       "A real-time transport tracking app built with Flutter and Firestore, with live driver location, student pickup status, and optimised routes.",
     icon: "/projects/ozzy-shuttle/icon.webp",
   },
   {
     name: "Swifty Companion",
+    kind: "curriculum",
     description:
       "Authenticates with the 42 Intra API to search 42 network users, showing detailed profiles with validated, failed, and in-progress projects alongside completed skills.",
     icon: "/projects/shared/flutter.webp",
     iconFit: "contain",
+    href: "https://github.com/fr4t3llo/swifty-companion",
   },
   {
     name: "Protein App",
+    kind: "curriculum",
     description:
       "Explore scientific models like H2O and Carbon and view them in 3D. Sign in with Google Firebase, with fingerprint and Face ID authentication.",
     icon: "/projects/protein/icon.webp",
   },
   {
-    name: "Accuweather App",
-    slug: "accuweather-app",
+    name: "Weather App",
+    kind: "curriculum",
+    slug: "weather-app",
     description:
       "Built with Flutter and the Open-Meteo API. Search for a city and get current, daily, and weekly weather in a friendly, intuitive interface.",
     summary:
@@ -256,6 +280,7 @@ export const projects: Project[] = [
   },
   {
     name: "Hangouts",
+    kind: "curriculum",
     slug: "hangouts",
     description:
       "Create, edit, and delete contacts, send messages, make phone calls, and switch the app's language between English and Spanish.",
@@ -273,6 +298,7 @@ export const projects: Project[] = [
   },
   {
     name: "Wallpaperify",
+    kind: "personal",
     slug: "wallpaperify",
     description:
       "Search for wallpapers and download them locally, powered by the Pexels API.",
@@ -291,6 +317,7 @@ export const projects: Project[] = [
   },
   {
     name: "Diary App",
+    kind: "curriculum",
     slug: "diary-app",
     description:
       "A daily diary that lets you log your feelings and thoughts for each day, with the date and a personal description.",
@@ -313,12 +340,24 @@ export const projects: Project[] = [
 export const skills = [
   "Flutter",
   "Dart",
+  "GetX",
+  "Provider",
+  "Firebase Auth",
+  "Cloud Firestore",
+  "Firebase Storage",
+  "RESTful APIs",
+  "Dio",
+  "SQLite",
+  "Real-time location tracking",
+  "Localisation (i18n)",
   "Git",
-  "C++",
-  "RESTful API",
   "CI/CD",
-  "Firebase",
+  "C++",
   "Figma",
+] as const;
+
+/** Creative skills, kept apart so the technical list stays focused. */
+export const creativeSkills = [
   "Photography",
   "Video Editing",
   "Graphic Design",
