@@ -24,7 +24,7 @@ export const profile = {
     },
     { icon: "github", label: "GitHub", href: "https://github.com/fr4t3llo" },
   ],
-  cvHref: "/cv.pdf",
+  cvHref: "/SAIFEDDINE-KASMI-Resume.pdf",
   email: "kasmisaifeddine@gmail.com",
   whatsapp: { display: "+212 661189840", href: "https://wa.me/212661189840" },
   // French line, kept alongside the Moroccan WhatsApp number rather than

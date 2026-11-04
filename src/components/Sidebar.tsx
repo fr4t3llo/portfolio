@@ -90,7 +90,7 @@ export default function Sidebar() {
         <div className="mt-3 flex gap-2 lg:mt-4">
           <a
             href={asset(profile.cvHref)}
-            download
+            download={profile.cvHref.split("/").pop()}
             className="flex h-[46px] flex-1 items-center justify-center gap-2 rounded-md bg-ink text-meta font-medium text-cream transition-opacity hover:opacity-90"
           >
             <Download className="size-4" />

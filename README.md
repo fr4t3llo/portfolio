@@ -22,7 +22,8 @@ and contact details. Components read from it, so no JSX changes are needed to
 update the site's text.
 
 - Replace `public/avatar.jpg` with a profile photo.
-- Replace `public/cv.pdf` to change the Download CV link.
+- Replace `public/SAIFEDDINE-KASMI-Resume.pdf` to change the Download CV link
+  (the filename is what visitors download; `cvHref` in `profile.ts` points at it).
 - Tech icons come from `simple-icons`; keys are mapped in
   [`src/components/TechIcon.tsx`](src/components/TechIcon.tsx).
 
