@@ -91,14 +91,14 @@ export type Project = {
   kind: ProjectKind;
 };
 
-export type ProjectKind = "professional" | "personal" | "web" | "curriculum";
+export type ProjectKind = "mobile" | "web" | "design";
 
 /** Subsections of Projects, in display order. */
 export const projectGroups: { kind: ProjectKind; title: string }[] = [
-  { kind: "professional", title: "Professional work" },
-  { kind: "personal", title: "Side projects" },
+  { kind: "mobile", title: "Mobile apps" },
   { kind: "web", title: "Web & DevOps" },
-  { kind: "curriculum", title: "42 / 1337 curriculum" },
+  // Hidden until it has projects — add Figma work with kind: "design".
+  { kind: "design", title: "UI/UX design" },
 ];
 
 export const about = [
@@ -234,35 +234,35 @@ export const volunteering: Entry[] = [
 export const projects: Project[] = [
   {
     name: "Storywonder App",
-    kind: "professional",
+    kind: "mobile",
     description:
       "Lets parents create personalised stories for their children. Parents build a child profile — name, age, eye colour, hair colour — and describe the story they want; GPT-4 and Stable Diffusion generate a detailed, customised result.",
     icon: "/projects/storywonder/icon.webp",
   },
   {
     name: "REPaiR",
-    kind: "professional",
+    kind: "mobile",
     description:
       "Helps users repair broken items. Take a picture of the item — a broken chair, say — and the app returns a step-by-step guide to fix it along with the specific tools required.",
     icon: "/projects/repair/icon.webp",
   },
   {
     name: "LEET Event",
-    kind: "personal",
+    kind: "mobile",
     description:
       "Lets 1337 students and staff discover and join workshops, talks, and coding nights. Features 42 Intra authentication, RSVP with calendar integration, automatic reminders, QR-code check-in, post-event feedback, and an admin dashboard for organisers.",
     icon: "/projects/leet-event/icon.webp",
   },
   {
     name: "Ozzy Shuttle",
-    kind: "professional",
+    kind: "mobile",
     description:
       "A real-time transport tracking app built with Flutter and Firestore, with live driver location, student pickup status, and optimised routes.",
     icon: "/projects/ozzy-shuttle/icon.webp",
   },
   {
     name: "Swifty Companion",
-    kind: "curriculum",
+    kind: "mobile",
     description:
       "Authenticates with the 42 Intra API to search 42 network users, showing detailed profiles with validated, failed, and in-progress projects alongside completed skills.",
     icon: "/projects/shared/flutter.webp",
@@ -271,14 +271,14 @@ export const projects: Project[] = [
   },
   {
     name: "Protein App",
-    kind: "curriculum",
+    kind: "mobile",
     description:
       "Explore scientific models like H2O and Carbon and view them in 3D. Sign in with Google Firebase, with fingerprint and Face ID authentication.",
     icon: "/projects/protein/icon.webp",
   },
   {
     name: "Weather App",
-    kind: "curriculum",
+    kind: "mobile",
     slug: "weather-app",
     description:
       "Built with Flutter and the Open-Meteo API. Search for a city and get current, daily, and weekly weather in a friendly, intuitive interface.",
@@ -299,7 +299,7 @@ export const projects: Project[] = [
   },
   {
     name: "Hangouts",
-    kind: "curriculum",
+    kind: "mobile",
     slug: "hangouts",
     description:
       "Create, edit, and delete contacts, send messages, make phone calls, and switch the app's language between English and Spanish.",
@@ -317,7 +317,7 @@ export const projects: Project[] = [
   },
   {
     name: "Wallpaperify",
-    kind: "personal",
+    kind: "mobile",
     slug: "wallpaperify",
     description:
       "Search for wallpapers and download them locally, powered by the Pexels API.",
@@ -336,7 +336,7 @@ export const projects: Project[] = [
   },
   {
     name: "Diary App",
-    kind: "curriculum",
+    kind: "mobile",
     slug: "diary-app",
     description:
       "A daily diary that lets you log your feelings and thoughts for each day, with the date and a personal description.",
@@ -418,6 +418,10 @@ export const skillGroups = [
     ],
   },
   {
+    title: "UI/UX design",
+    items: ["Figma", "Graphic Design"],
+  },
+  {
     title: "DevOps & cloud",
     items: [
       "Docker",
@@ -434,16 +438,12 @@ export const skillGroups = [
   },
   {
     title: "Foundations & tools",
-    items: ["C", "C++", "Algorithms", "Networking", "Git", "Figma"],
+    items: ["C", "C++", "Algorithms", "Networking", "Git"],
   },
 ] as const;
 
 /** Creative skills, kept apart so the technical list stays focused. */
-export const creativeSkills = [
-  "Photography",
-  "Video Editing",
-  "Graphic Design",
-] as const;
+export const creativeSkills = ["Photography", "Video Editing"] as const;
 
 /** Keys map to `simple-icons` exports in components/TechIcon.tsx. */
 export const technologies = [
