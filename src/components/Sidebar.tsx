@@ -1,5 +1,13 @@
 import Image from "next/image";
-import { Briefcase, Download, Globe, Mail, MapPin, Phone } from "lucide-react";
+import {
+  Briefcase,
+  Download,
+  Globe,
+  GraduationCap,
+  Mail,
+  MapPin,
+  Phone,
+} from "lucide-react";
 import { brandIcons } from "./icons";
 import { profile } from "@/data/profile";
 import { asset } from "@/lib/asset";
@@ -9,6 +17,7 @@ const metaIcons = {
   location: MapPin,
   briefcase: Briefcase,
   globe: Globe,
+  graduation: GraduationCap,
 } as const;
 
 export default function Sidebar() {

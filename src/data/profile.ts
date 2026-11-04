@@ -13,6 +13,7 @@ export const profile = {
     { icon: "phone", label: "+33 7 53 89 12 00", href: "tel:+33753891200" },
     { icon: "location", label: "Paris, France" },
     { icon: "briefcase", label: "3+ years experience" },
+    { icon: "graduation", label: "Open to alternance" },
     { icon: "globe", label: "Open to remote work" },
   ],
   socials: [
@@ -139,6 +140,22 @@ export const experience: Entry[] = [
     period: "2022 – Present",
     summary:
       "Developing cross-platform apps for Android and iOS with Flutter, and publishing them to the Google Play Store after completing the testing required by Google.",
+  },
+];
+
+export type Testimonial = {
+  quote: string;
+  /** Who said it — a person, or the organisation when unnamed. */
+  author: string;
+  context?: string;
+};
+
+export const testimonials: Testimonial[] = [
+  {
+    quote:
+      "Saif is a valuable team member with impressive skills and creativity. He is able to bring to life ideas within minutes and understand perfectly the purpose behind each idea to build it following specific guidelines.",
+    author: "AtlasAI",
+    context: "Mobile Developer, Dec 2023 – Jun 2024",
   },
 ];
 

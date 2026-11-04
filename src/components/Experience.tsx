@@ -2,6 +2,7 @@ import {
   certifications,
   education,
   experience,
+  testimonials,
   volunteering,
 } from "@/data/profile";
 import { EntryRow, Section } from "./primitives";
@@ -15,6 +16,21 @@ export default function Experience() {
             <EntryRow key={`${job.title}-${job.org}`} entry={job} tile />
           ))}
         </ul>
+
+        {testimonials.map((t) => (
+          <figure
+            key={t.author}
+            className="mt-12 rounded-md border-l-2 border-accent bg-surface/60 px-6 py-5"
+          >
+            <blockquote className="font-serif text-lead leading-relaxed text-balance">
+              “{t.quote}”
+            </blockquote>
+            <figcaption className="mt-4 text-meta text-muted">
+              — <span className="font-medium text-ink">{t.author}</span>
+              {t.context ? <span>, {t.context}</span> : null}
+            </figcaption>
+          </figure>
+        ))}
       </Section>
 
       <Section title="Education">
