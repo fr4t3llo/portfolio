@@ -13,7 +13,7 @@ const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
 });
 
-const title = `${profile.name} — ${profile.role}`;
+const title = `${profile.name} | ${profile.role}`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(profile.siteUrl),

@@ -103,8 +103,8 @@ export const projectGroups: { kind: ProjectKind; title: string }[] = [
 
 export const about = [
   "I'm a mobile developer with 3+ years of experience building cross-platform Flutter applications for Android and iOS.",
-  "I work on AI-powered applications, Firebase, REST APIs, real-time communication, and scalable mobile architectures — from personalised story generation with GPT-4 and Stable Diffusion to live transport tracking on Firestore.",
-  "On the web, I build with React, Next.js and TypeScript, and ship with Docker, NGINX and Ansible — this portfolio included.",
+  "I work on AI-powered applications, Firebase, REST APIs, real-time communication, and scalable mobile architectures. My work ranges from personalised story generation with GPT-4 and Stable Diffusion to live transport tracking on Firestore.",
+  "On the web, I build with React, Next.js and TypeScript, and ship with Docker, NGINX and Ansible. This portfolio is one example.",
   "I'm passionate about delivering high-performance user experiences and collaborating with cross-functional teams.",
   "Currently, I'm working as a mobile developer while studying for the RNCP 7 IT Architect title at 42 Paris.",
 ] as const;
@@ -132,8 +132,8 @@ export const experience: Entry[] = [
     period: "Dec 2023 – Jun 2024",
     summary: "Contributed to two AI-powered Flutter applications:",
     details: [
-      "REPaiR — users photograph a broken item and receive a step-by-step repair guide with the tools required.",
-      "StoryWonder — generates personalised bedtime stories starring the child, with text from GPT-4 and illustrations from Stable Diffusion.",
+      "REPaiR: users photograph a broken item and receive a step-by-step repair guide with the tools required.",
+      "StoryWonder: generates personalised bedtime stories starring the child, with text from GPT-4 and illustrations from Stable Diffusion.",
     ],
   },
   {
@@ -236,14 +236,14 @@ export const projects: Project[] = [
     name: "Storywonder App",
     kind: "mobile",
     description:
-      "Lets parents create personalised stories for their children. Parents build a child profile — name, age, eye colour, hair colour — and describe the story they want; GPT-4 and Stable Diffusion generate a detailed, customised result.",
+      "Lets parents create personalised stories for their children. Parents build a child profile (name, age, eye colour, hair colour) and describe the story they want. GPT-4 and Stable Diffusion then generate a detailed, customised result.",
     icon: "/projects/storywonder/icon.webp",
   },
   {
     name: "REPaiR",
     kind: "mobile",
     description:
-      "Helps users repair broken items. Take a picture of the item — a broken chair, say — and the app returns a step-by-step guide to fix it along with the specific tools required.",
+      "Helps users repair broken items. Take a picture of the item, such as a broken chair, and the app returns a step-by-step guide to fix it along with the specific tools required.",
     icon: "/projects/repair/icon.webp",
   },
   {
@@ -283,7 +283,7 @@ export const projects: Project[] = [
     description:
       "Built with Flutter and the Open-Meteo API. Search for a city and get current, daily, and weekly weather in a friendly, intuitive interface.",
     summary:
-      "Check the weather anywhere in the world. Search for any city and get current conditions, a daily forecast, and a weekly outlook — delivered through the Open-Meteo API with a responsive, intuitive interface.",
+      "Check the weather anywhere in the world. Search for any city and get current conditions, a daily forecast, and a weekly outlook. Data comes from the Open-Meteo API, shown in a responsive, intuitive interface.",
     features: [
       "City search covering worldwide locations",
       "Real-time current weather conditions",
@@ -304,7 +304,7 @@ export const projects: Project[] = [
     description:
       "Create, edit, and delete contacts, send messages, make phone calls, and switch the app's language between English and Spanish.",
     summary:
-      "A contact-book app covering the full lifecycle of a contact — create, view, edit and delete — with messaging and calling wired straight through to the device, and the whole interface switchable between English and Spanish.",
+      "A contact-book app covering the full lifecycle of a contact (create, view, edit and delete), with messaging and calling wired straight through to the device, and the whole interface switchable between English and Spanish.",
     features: [
       "Create, view, edit and delete contacts",
       "Send a message or place a call directly from a contact",
@@ -354,7 +354,7 @@ export const projects: Project[] = [
     icon: "/projects/shared/flutter.webp",
     iconFit: "contain",
   },  {
-    name: "skasmi.tech — this portfolio",
+    name: "skasmi.tech (this portfolio)",
     kind: "web",
     description:
       "Built with Next.js 16, React, TypeScript and Tailwind CSS v4. Exported as a static site and deployed to GitHub Pages on a custom domain by a GitHub Actions pipeline, with Open Graph previews and a sitemap.",
@@ -364,7 +364,7 @@ export const projects: Project[] = [
     name: "Cloud-1",
     kind: "web",
     description:
-      "Automated deployment of a containerised WordPress site to DigitalOcean servers with Ansible — roles provision each host and build the NGINX, WordPress and MariaDB containers, then bring the stack up with Docker Compose.",
+      "Automated deployment of a containerised WordPress site to DigitalOcean servers with Ansible. Roles provision each host and build the NGINX, WordPress and MariaDB containers, then bring the stack up with Docker Compose.",
     href: "https://github.com/fr4t3llo/cloud-1",
   },
   {
@@ -378,7 +378,7 @@ export const projects: Project[] = [
     name: "Leaderboard UI",
     kind: "web",
     description:
-      "A responsive leaderboard interface prototyped with Next.js, TypeScript, Tailwind CSS and DaisyUI — profile rows with ratings, role, contact and skill badges.",
+      "A responsive leaderboard interface prototyped with Next.js, TypeScript, Tailwind CSS and DaisyUI, with profile rows showing ratings, role, contact and skill badges.",
     href: "https://github.com/fr4t3llo/leaderboard",
   },
 ];

@@ -20,7 +20,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const project = detailed.find((p) => p.slug === slug);
   if (!project) return {};
-  const title = `${project.name} — ${profile.name}`;
+  const title = `${project.name} | ${profile.name}`;
   const description = project.summary ?? project.description;
   const url = `/projects/${project.slug}/`;
   return {

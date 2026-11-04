@@ -26,7 +26,7 @@ export default function Experience() {
               “{t.quote}”
             </blockquote>
             <figcaption className="mt-4 text-meta text-muted">
-              — <span className="font-medium text-ink">{t.author}</span>
+              <span className="font-medium text-ink">{t.author}</span>
               {t.context ? <span>, {t.context}</span> : null}
             </figcaption>
           </figure>
