@@ -1,15 +1,24 @@
 import {
   siAndroid,
+  siAnsible,
   siApple,
   siCloudinary,
   siCplusplus,
   siDart,
+  siDigitalocean,
   siDocker,
   siFigma,
   siFirebase,
   siFlutter,
   siGit,
+  siGithubactions,
   siGooglecloud,
+  siJavascript,
+  siNextdotjs,
+  siNginx,
+  siReact,
+  siTailwindcss,
+  siTypescript,
 } from "simple-icons";
 
 const icons = {
@@ -24,6 +33,15 @@ const icons = {
   figma: siFigma,
   android: siAndroid,
   apple: siApple,
+  typescript: siTypescript,
+  javascript: siJavascript,
+  react: siReact,
+  nextdotjs: siNextdotjs,
+  tailwindcss: siTailwindcss,
+  nginx: siNginx,
+  ansible: siAnsible,
+  digitalocean: siDigitalocean,
+  githubactions: siGithubactions,
 } as const;
 
 export type TechKey = keyof typeof icons;

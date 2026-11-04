@@ -91,18 +91,20 @@ export type Project = {
   kind: ProjectKind;
 };
 
-export type ProjectKind = "professional" | "personal" | "curriculum";
+export type ProjectKind = "professional" | "personal" | "web" | "curriculum";
 
 /** Subsections of Projects, in display order. */
 export const projectGroups: { kind: ProjectKind; title: string }[] = [
   { kind: "professional", title: "Professional work" },
   { kind: "personal", title: "Side projects" },
+  { kind: "web", title: "Web & DevOps" },
   { kind: "curriculum", title: "42 / 1337 curriculum" },
 ];
 
 export const about = [
   "I'm a mobile developer with 3+ years of experience building cross-platform Flutter applications for Android and iOS.",
   "I work on AI-powered applications, Firebase, REST APIs, real-time communication, and scalable mobile architectures — from personalised story generation with GPT-4 and Stable Diffusion to live transport tracking on Firestore.",
+  "On the web, I build with React, Next.js and TypeScript, and ship with Docker, NGINX and Ansible — this portfolio included.",
   "I'm passionate about delivering high-performance user experiences and collaborating with cross-functional teams.",
   "Currently, I'm working as a mobile developer while studying for the RNCP 7 IT Architect title at 42 Paris.",
 ] as const;
@@ -351,26 +353,89 @@ export const projects: Project[] = [
     shots: 3,
     icon: "/projects/shared/flutter.webp",
     iconFit: "contain",
+  },  {
+    name: "skasmi.tech — this portfolio",
+    kind: "web",
+    description:
+      "Built with Next.js 16, React, TypeScript and Tailwind CSS v4. Exported as a static site and deployed to GitHub Pages on a custom domain by a GitHub Actions pipeline, with Open Graph previews and a sitemap.",
+    href: "https://github.com/fr4t3llo/portfolio",
+  },
+  {
+    name: "Cloud-1",
+    kind: "web",
+    description:
+      "Automated deployment of a containerised WordPress site to DigitalOcean servers with Ansible — roles provision each host and build the NGINX, WordPress and MariaDB containers, then bring the stack up with Docker Compose.",
+    href: "https://github.com/fr4t3llo/cloud-1",
+  },
+  {
+    name: "Inception",
+    kind: "web",
+    description:
+      "A multi-container web infrastructure built from scratch with Docker Compose: NGINX with TLS, WordPress with PHP-FPM and MariaDB, plus Redis cache, Adminer, an FTP server, cAdvisor and a static site as bonus services.",
+    href: "https://github.com/fr4t3llo/Inception",
+  },
+  {
+    name: "Leaderboard UI",
+    kind: "web",
+    description:
+      "A responsive leaderboard interface prototyped with Next.js, TypeScript, Tailwind CSS and DaisyUI — profile rows with ratings, role, contact and skill badges.",
+    href: "https://github.com/fr4t3llo/leaderboard",
   },
 ];
 
-export const skills = [
-  "Flutter",
-  "Dart",
-  "GetX",
-  "Provider",
-  "Firebase Auth",
-  "Cloud Firestore",
-  "Firebase Storage",
-  "RESTful APIs",
-  "Dio",
-  "SQLite",
-  "Real-time location tracking",
-  "Localisation (i18n)",
-  "Git",
-  "CI/CD",
-  "C++",
-  "Figma",
+export const skillGroups = [
+  {
+    title: "Mobile",
+    items: [
+      "Flutter",
+      "Dart",
+      "GetX",
+      "Provider",
+      "Firebase Auth",
+      "Cloud Firestore",
+      "Firebase Storage",
+      "Dio",
+      "SQLite",
+      "Real-time location tracking",
+      "Localisation (i18n)",
+      "Android",
+      "iOS",
+    ],
+  },
+  {
+    title: "Web",
+    items: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "TypeScript",
+      "React",
+      "Next.js",
+      "Tailwind CSS",
+      "RESTful APIs",
+      "WordPress",
+      "Solidity (Web3)",
+    ],
+  },
+  {
+    title: "DevOps & cloud",
+    items: [
+      "Docker",
+      "Docker Compose",
+      "NGINX",
+      "MariaDB",
+      "Redis",
+      "Ansible",
+      "DigitalOcean",
+      "Google Cloud",
+      "GitHub Actions",
+      "CI/CD",
+    ],
+  },
+  {
+    title: "Foundations & tools",
+    items: ["C", "C++", "Algorithms", "Networking", "Git", "Figma"],
+  },
 ] as const;
 
 /** Creative skills, kept apart so the technical list stays focused. */
@@ -388,11 +453,20 @@ export const technologies = [
   "googlecloud",
   "cloudinary",
   "git",
-  "cplusplus",
-  "docker",
-  "figma",
   "android",
   "apple",
+  "typescript",
+  "javascript",
+  "react",
+  "nextdotjs",
+  "tailwindcss",
+  "docker",
+  "nginx",
+  "ansible",
+  "digitalocean",
+  "githubactions",
+  "cplusplus",
+  "figma",
 ] as const;
 
 export const languages = [

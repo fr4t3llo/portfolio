@@ -1,7 +1,7 @@
 import {
   creativeSkills,
   languages,
-  skills,
+  skillGroups,
   technologies,
 } from "@/data/profile";
 import { Section, Tag } from "./primitives";
@@ -11,11 +11,20 @@ export default function Skills() {
   return (
     <>
       <Section id="skills" title="Skills">
-        <ul className="flex flex-wrap gap-2">
-          {skills.map((skill) => (
-            <Tag key={skill}>{skill}</Tag>
+        <div className="space-y-8">
+          {skillGroups.map((group) => (
+            <div key={group.title}>
+              <p className="mb-3 text-meta font-medium tracking-wide text-muted uppercase">
+                {group.title}
+              </p>
+              <ul className="flex flex-wrap gap-2">
+                {group.items.map((skill) => (
+                  <Tag key={skill}>{skill}</Tag>
+                ))}
+              </ul>
+            </div>
           ))}
-        </ul>
+        </div>
 
         <p className="mt-10 text-meta">Technologies &amp; tools:</p>
         <ul className="mt-4 flex flex-wrap gap-2">
